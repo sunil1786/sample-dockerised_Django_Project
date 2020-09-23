@@ -13,6 +13,8 @@ services:
     db:
         image: postgres
         environment: 
+            - TZ=Asia/Kolkata
+            - PGTZ=Asia/Kolkata
             - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
