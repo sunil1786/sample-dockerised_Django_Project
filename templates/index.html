@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Docker..</title>
+</head>
+<body>
+    <h1>List</h1>
+    <a href="{% url 'new' %}">Add New</a>
+    {% for obj in object_list %}
+        <p>{{obj.number}}</p>
+    {% empty %}
+    <p>No Numbers...</p>
+    {% endfor %}
+</body>
+</html>
