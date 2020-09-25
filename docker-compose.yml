@@ -5,14 +5,22 @@ services:
         build: 
             context: .
         volumes: 
-            - .:/app
-        ports: 
-            - "8000:8000"
-        command: sh -c "python manage.py runserver 0.0.0.0:8000"
+            - static_data:/vol/web
         environment: 
-            - DEBUG=1
+            - SECRET_KEY=key
+            - ALLOWED_HOSTS=127.0.0.1,localhost
+            - DEBUG=0
         depends_on: 
             - db
+    proxy:
+        build:
+            context: ./proxy
+        volumes: 
+            - static_data:/vol/static
+        ports: 
+            - "8080:8080"
+        depends_on: 
+            - web
     db:
         image: postgres
         environment: 
@@ -21,5 +29,8 @@ services:
             - POSTGRES_DB=postgres
             - POSTGRES_USER=postgres
             - POSTGRES_PASSWORD=postgres
+
+volumes: 
+    static_data:
 
 
